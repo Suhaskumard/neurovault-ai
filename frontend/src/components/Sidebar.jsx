@@ -19,9 +19,9 @@ export default function Sidebar({
   const visibleChats = chats.filter((chat) => chat.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
-    <aside className="hidden h-full w-[320px] shrink-0 flex-col border-r border-white/6 bg-[#171717]/95 text-[#ececec] backdrop-blur md:flex">
+    <aside className="hidden h-full w-[320px] shrink-0 flex-col border-r border-white/5 glass-panel text-[#ececec] md:flex z-10 shadow-2xl">
       <div className="flex items-center justify-between px-4 py-4">
-        <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-emerald-400/20 bg-gradient-to-br from-emerald-400/15 to-sky-400/10 text-sm font-semibold text-white shadow-[0_0_30px_rgba(16,185,129,0.08)]">
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-400/30 bg-gradient-to-br from-emerald-500/20 to-sky-500/20 text-sm font-bold text-white shadow-[0_0_20px_rgba(16,185,129,0.15)] ring-1 ring-white/10">
           NV
         </div>
         <button
@@ -38,7 +38,7 @@ export default function Sidebar({
         <button
           type="button"
           onClick={onNewChat}
-          className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-zinc-100 hover:bg-white/7"
+          className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-zinc-100 hover:bg-white/10 transition-colors"
         >
           <span className="text-xl leading-none">+</span>
           New chat
@@ -46,7 +46,7 @@ export default function Sidebar({
         <button
           type="button"
           onClick={() => setIsSearchOpen((value) => !value)}
-          className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-zinc-100 hover:bg-white/7"
+          className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-zinc-100 hover:bg-white/10 transition-colors"
         >
           <span className="text-lg leading-none">Q</span>
           Search chats
@@ -57,7 +57,7 @@ export default function Sidebar({
             value={searchTerm}
             onChange={(event) => setSearchTerm(event.target.value)}
             placeholder="Search recents"
-            className="mt-2 w-full rounded-lg border border-white/10 bg-[#202020] px-3 py-2 text-sm text-zinc-100 outline-none placeholder:text-zinc-500 focus:border-emerald-300/30 focus:shadow-[0_0_0_3px_rgba(16,185,129,0.08)]"
+            className="mt-2 w-full rounded-xl border border-white/10 bg-[#0a0a0c]/50 px-3 py-2 text-sm text-zinc-100 outline-none placeholder:text-zinc-500 focus:border-emerald-500/50 focus:shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all animate-slide-up"
           />
         )}
       </div>
@@ -70,9 +70,9 @@ export default function Sidebar({
               key={chat.id}
               type="button"
               onClick={() => onSelectChat(chat.id)}
-              className={`flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm text-zinc-100 hover:bg-white/7 ${
+              className={`flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm text-zinc-100 hover:bg-white/10 transition-colors ${
                 chat.id === currentChatId || (!currentChatId && index === 0)
-                  ? "bg-white/8 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]"
+                  ? "bg-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] font-semibold"
                   : ""
               }`}
             >
@@ -89,10 +89,10 @@ export default function Sidebar({
       <div className="space-y-3 border-t border-white/10 p-3">
         <FileUpload onUploaded={onUploaded} />
 
-        <div className="space-y-3 rounded-xl border border-white/8 bg-[#202020] p-3 shadow-[0_12px_30px_rgba(0,0,0,0.18)]">
+        <div className="space-y-3 rounded-xl border border-white/5 bg-[#0a0a0c]/60 p-3 shadow-lg">
           <div className="flex items-center justify-between">
             <label className="text-sm font-medium text-zinc-200">Top-k</label>
-            <span className="rounded-md border border-white/8 bg-[#303030] px-2 py-1 text-xs text-zinc-200">{topK}</span>
+            <span className="rounded-md border border-white/10 bg-[#000] px-2 py-1 text-xs font-semibold text-zinc-200 shadow-inner">{topK}</span>
           </div>
           <input
             type="range"
@@ -107,26 +107,26 @@ export default function Sidebar({
         <button
           type="button"
           onClick={onClear}
-          className="w-full rounded-lg px-3 py-2 text-sm font-medium text-zinc-300 hover:bg-white/7"
+          className="w-full rounded-lg px-3 py-2 text-sm font-medium text-zinc-300 hover:bg-white/10 transition-colors"
         >
           Clear index
         </button>
         <button
           type="button"
           onClick={onReindex}
-          className="w-full rounded-lg px-3 py-2 text-sm font-medium text-zinc-300 hover:bg-white/7"
+          className="w-full rounded-lg px-3 py-2 text-sm font-medium text-zinc-300 hover:bg-white/10 transition-colors"
         >
           Reindex uploads
         </button>
 
-        <p className="rounded-xl border border-white/8 bg-[#202020] p-3 text-xs leading-5 text-zinc-400 shadow-[0_12px_30px_rgba(0,0,0,0.18)]">{status}</p>
+        <p className="rounded-xl border border-white/5 bg-[#0a0a0c]/60 p-3 text-xs leading-5 text-zinc-400 shadow-lg">{status}</p>
 
-        <div className="flex items-center gap-3 rounded-xl border border-white/6 bg-white/[0.03] px-3 py-2 hover:bg-white/[0.05]">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-emerald-300/25 to-sky-300/20 text-xs font-semibold">
+        <div className="flex items-center gap-3 rounded-xl border border-white/5 bg-[#0a0a0c]/40 px-3 py-2 hover:bg-white/10 transition-all cursor-default">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400/30 to-sky-400/30 text-xs font-bold ring-1 ring-white/10">
             SK
           </div>
           <div className="min-w-0">
-            <p className="truncate text-sm text-white">Suhas Kumar</p>
+            <p className="truncate text-sm font-medium text-white">Suhas Kumar</p>
             <p className="text-xs text-zinc-400">Local</p>
           </div>
         </div>

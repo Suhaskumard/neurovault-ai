@@ -40,13 +40,13 @@ export default function FileUpload({ onUploaded }) {
       <button
         type="button"
         onClick={() => inputRef.current?.click()}
-        className="flex w-full items-center justify-between rounded-xl border border-white/10 bg-gradient-to-br from-[#2f2f2f] to-[#252525] px-3 py-3 text-left text-sm text-zinc-100 hover:border-emerald-300/20 hover:bg-[#343434] hover:shadow-[0_10px_24px_rgba(16,185,129,0.06)]"
+        className="flex w-full items-center justify-between rounded-xl border border-white/10 bg-white/5 px-3 py-3 text-left text-sm text-zinc-100 hover:border-emerald-500/40 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(16,185,129,0.15)] transition-all group cursor-pointer"
       >
         <div>
-          <div className="font-medium text-white">Upload files</div>
-          <div className="mt-1 text-xs text-zinc-400">PDF, TXT, DOCX, PNG, JPG</div>
+          <div className="font-medium text-white transition-colors group-hover:text-emerald-100">Upload files</div>
+          <div className="mt-1 text-[11px] text-zinc-400">PDF, TXT, DOCX, PNG, JPG</div>
         </div>
-        <span className="grid h-8 w-8 place-items-center rounded-full border border-white/10 bg-white/5 text-lg leading-none text-zinc-300">+</span>
+        <span className="grid h-8 w-8 place-items-center rounded-full border border-white/10 bg-white/5 text-lg leading-none text-zinc-300 group-hover:bg-emerald-500/20 group-hover:text-emerald-300 group-hover:border-emerald-500/30 transition-all">+</span>
       </button>
       {selected.length > 0 && (
         <div className="max-h-28 space-y-1 overflow-y-auto rounded-xl border border-white/8 bg-[#171717] p-2 text-xs text-zinc-400">
@@ -59,8 +59,8 @@ export default function FileUpload({ onUploaded }) {
         </div>
       )}
       {isUploading && (
-        <div className="h-2 overflow-hidden rounded-full bg-white/10">
-          <div className="h-full bg-gradient-to-r from-emerald-400 to-sky-400 transition-all" style={{ width: `${progress}%` }} />
+        <div className="h-2 overflow-hidden rounded-full bg-white/5 inset-shadow-sm">
+          <div className="h-full bg-gradient-to-r from-emerald-400 to-sky-400 transition-all duration-300 ease-out shadow-[0_0_10px_rgba(52,211,153,0.5)]" style={{ width: `${progress}%` }} />
         </div>
       )}
       {error && <p className="text-xs text-red-300">{error}</p>}
@@ -68,7 +68,7 @@ export default function FileUpload({ onUploaded }) {
         type="button"
         onClick={handleUpload}
         disabled={!selected.length || isUploading}
-        className="w-full rounded-xl bg-gradient-to-r from-[#f1f5f9] to-[#dbeafe] px-3 py-2.5 text-sm font-semibold text-[#111827] hover:from-white hover:to-[#e5f3ff] disabled:cursor-not-allowed disabled:bg-[#3a3a3a] disabled:text-zinc-500"
+        className="w-full rounded-xl bg-gradient-to-r from-emerald-500 to-sky-500 px-3 py-2.5 text-sm font-bold text-white shadow-md shadow-emerald-500/10 hover:shadow-lg hover:shadow-emerald-500/30 hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100 disabled:shadow-none transition-all"
       >
         {isUploading ? "Indexing..." : "Upload"}
       </button>

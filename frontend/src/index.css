@@ -1,6 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .animate-slide-up {
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  .glass-panel {
+    @apply bg-[#0a0a0c]/70 backdrop-blur-2xl border border-white/5;
+  }
+}
+
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(16px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes gradientMovement {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
 html,
 body,
@@ -10,12 +41,20 @@ body,
 
 body {
   margin: 0;
-  background:
-    radial-gradient(circle at top, rgba(72, 187, 120, 0.08), transparent 28%),
-    radial-gradient(circle at 85% 15%, rgba(56, 189, 248, 0.08), transparent 24%),
-    #202123;
+  background-color: #050505;
+  background-image: 
+    radial-gradient(ellipse at 10% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 40%),
+    radial-gradient(ellipse at 90% 80%, rgba(14, 165, 233, 0.08) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 50%, rgba(99, 102, 241, 0.05) 0%, transparent 60%);
+  background-size: 200% 200%;
+  animation: gradientMovement 20s ease infinite;
   color: #ececec;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: 'Outfit', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  overflow: hidden; /* App handles its own scroll areas */
+}
+
+pre, code {
+  font-family: 'JetBrains Mono', monospace;
 }
 
 * {
@@ -31,10 +70,31 @@ input {
 button,
 input,
 textarea,
-summary {
-  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+summary,
+details {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 ::selection {
-  background: rgba(110, 231, 183, 0.28);
+  background: rgba(16, 185, 129, 0.3);
+  color: #fff;
+}
+
+/* Custom Scrollbar for webkit */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
 }

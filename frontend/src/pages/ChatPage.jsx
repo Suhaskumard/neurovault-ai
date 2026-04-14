@@ -350,8 +350,8 @@ export default function ChatPage() {
         status={status}
       />
 
-      <main className="relative flex min-h-0 flex-1 flex-col bg-transparent">
-        <header className="flex h-[68px] shrink-0 items-center justify-between border-b border-white/5 bg-[#202123]/72 px-3 backdrop-blur md:px-8">
+      <main className="relative flex min-h-0 flex-1 flex-col bg-transparent animate-fade-in">
+        <header className="flex h-[68px] shrink-0 items-center justify-between border-b border-white/5 glass-panel px-3 md:px-8">
           <button
             type="button"
             onClick={() => setMenuOpen((value) => !value)}
@@ -361,7 +361,7 @@ export default function ChatPage() {
             <span className="text-sm text-zinc-400">v</span>
           </button>
           {menuOpen && (
-            <div className="absolute left-4 top-16 z-20 w-64 rounded-xl border border-white/10 bg-[#2b2b2b]/96 p-2 shadow-2xl backdrop-blur md:left-8">
+            <div className="absolute left-4 top-16 z-20 w-64 rounded-2xl border border-white/10 bg-[#0a0a0c]/90 p-2 shadow-2xl shadow-black/80 backdrop-blur-xl md:left-8 animate-slide-up">
               <button
                 type="button"
                 onClick={handleNewChat}
@@ -428,9 +428,9 @@ export default function ChatPage() {
 
         <form
           onSubmit={handleSubmit}
-          className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#202123] via-[#202123] to-transparent px-4 pb-5 pt-10"
+          className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#050505] via-[#050505]/90 to-transparent px-4 pb-8 pt-10"
         >
-          <div className="mx-auto flex max-w-[960px] items-end gap-3 rounded-[30px] border border-white/10 bg-[#2b2b2b]/96 p-2.5 shadow-[0_24px_60px_rgba(0,0,0,0.35)] backdrop-blur">
+          <div className="mx-auto flex max-w-[960px] items-end gap-3 rounded-[32px] border border-white/10 bg-[#0a0a0c]/70 p-2.5 shadow-[0_0_40px_rgba(0,0,0,0.3)] backdrop-blur-3xl transition-all focus-within:shadow-[0_0_40px_rgba(16,185,129,0.15)] focus-within:border-emerald-500/30">
             <button
               type="button"
               onClick={() => composerFileRef.current?.click()}
@@ -458,7 +458,7 @@ export default function ChatPage() {
               }}
               placeholder="Ask anything"
               rows="1"
-              className="max-h-36 min-h-12 flex-1 resize-none bg-transparent px-1 py-3.5 text-base text-vaultText outline-none placeholder:text-zinc-500"
+              className="max-h-36 min-h-12 flex-1 resize-none bg-transparent px-3 py-3.5 text-base text-zinc-100 outline-none placeholder:text-zinc-500"
             />
             <button
               type="button"
@@ -480,7 +480,7 @@ export default function ChatPage() {
             <button
               type="submit"
               disabled={isLoading || !input.trim()}
-              className="mb-1 h-10 rounded-full bg-gradient-to-r from-[#f1f5f9] to-[#dbeafe] px-5 text-sm font-semibold text-[#111827] hover:from-white hover:to-[#e5f3ff] disabled:cursor-not-allowed disabled:bg-zinc-600 disabled:text-zinc-400"
+              className="mb-1 h-10 rounded-full bg-gradient-to-r from-emerald-500 to-sky-500 px-6 text-sm font-semibold text-white shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100 disabled:shadow-none transition-all"
               aria-label="Send message"
             >
               Send
