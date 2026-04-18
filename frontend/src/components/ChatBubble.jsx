@@ -1,5 +1,3 @@
-import SourceViewer from "./SourceViewer";
-
 export default function ChatBubble({ message }) {
   const isUser = message.role === "user";
 
@@ -24,7 +22,6 @@ export default function ChatBubble({ message }) {
           </div>
         )}
         <p className="whitespace-pre-wrap break-words">{message.content || " "}</p>
-        {!isUser && message.sources?.length > 0 && <SourceViewer sources={message.sources} />}
       </div>
     </div>
   );

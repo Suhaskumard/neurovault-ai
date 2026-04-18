@@ -118,3 +118,12 @@ class HybridVectorStore:
     def count(self) -> int:
         with self._lock:
             return len(self.chunks)
+
+    def list_files(self) -> list[str]:
+        with self._lock:
+            return sorted({chunk.file_name for chunk in self.chunks})
+
+    def representative_chunks(self, file_name: str, limit: int = 3) -> list[dict]:
+        with self._lock:
+            selected = [chunk.text for chunk in self.chunks if chunk.file_name == file_name][:limit]
+        return [{"file": file_name, "snippet": text[:500]} for text in selected]
